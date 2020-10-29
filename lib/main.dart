@@ -4,60 +4,24 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() => runApp(AppointmentTimeTextFormat());
 
-class AppointmentTimeTextFormat extends StatefulWidget {
-  @override
-  AppointmentTimeTextFormatState createState() => AppointmentTimeTextFormatState();
-}
-
-List<String> views = <String>[
-  'Month',
-  'Schedule'
-];
-
-class AppointmentTimeTextFormatState extends State<AppointmentTimeTextFormat> {
-  CalendarController _calendarController;
-
-  @override
-  void initState() {
-    _calendarController = CalendarController();
-    super.initState();
-  }
-
+class AppointmentTimeTextFormat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            appBar: AppBar(
-              leading: PopupMenuButton<String>(
-                icon: Icon(Icons.calendar_today),
-                itemBuilder: (BuildContext context) =>
-                    views.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList(),
-                onSelected: (String value) {
-                  setState(() {
-                    if (value == 'Month') {
-                      _calendarController.view = CalendarView.month;
-                    } else if(value=="Schedule")
-                      {
-                        _calendarController.view=CalendarView.schedule;
-                      }
-                  });
-                },
-              ),
-            ),
             body: SafeArea(
-              child: SfCalendar(
-                controller: _calendarController,
-                dataSource: _getDataSource(),
-                monthViewSettings: MonthViewSettings(showAgenda: true),
-                appointmentTimeTextFormat: 'hh:mm:ss a',
-              ),
-            )));
+          child: SfCalendar(
+            view: CalendarView.month,
+            allowedViews: <CalendarView>[
+              CalendarView.month,
+              CalendarView.schedule
+            ],
+            dataSource: _getDataSource(),
+            monthViewSettings: MonthViewSettings(showAgenda: true),
+            appointmentTimeTextFormat: 'hh:mm:ss a',
+          ),
+        )));
   }
 
   _DataSource _getDataSource() {
