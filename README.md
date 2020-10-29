@@ -1,2 +1,1 @@
-# customize-apointment-time-format-flutter-event-calendar
-How to format the appointment time in the Flutter event calendar (SfCalendar)?
+[View document in Syncfusion Flutter Knowledge base](https://www.syncfusion.com/kb/11989/how-to-format-the-appointment-time-in-the-flutter-event-calendar-sfcalendar)
